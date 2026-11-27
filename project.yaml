@@ -1,0 +1,43 @@
+spec_version: "2.1"
+
+# 应用唯一标识，发布后不可修改
+app_id: com.example.demoapp
+version: 0.1.0
+
+support_arch:
+  - amd64
+  - arm64
+
+product_series:
+  - nasync
+
+supports:
+  - app
+  - pc
+
+# 后端服务启动命令（路径相对安装目录）
+start_cmd: bin/demoapp_serv --port=21010
+port: 21010
+# 网关把 /api/ 前缀转发到后端
+proxy_path: api
+open_type: inner
+
+tag_types:
+  - media
+
+# 最低 UGOS Pro 固件版本，需与设备实际固件匹配
+depend_fw_version: 1.13.0.0000
+
+# 声明网络权限，避免沙箱阻止监听端口
+permissions:
+  - NETWORK.ACCESS_INTERNET
+
+i18n:
+  en-US:
+    name: Demo App
+    description: A demo UGOS Pro application with a Go backend and static frontend.
+    author: nobody
+  zh-CN:
+    name: 演示应用
+    description: 一个包含 Go 后端与静态前端的绿联云演示应用。
+    author: nobody

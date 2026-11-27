@@ -1,0 +1,15 @@
+# 构建产物
+build_dir/
+*.upk
+*.product.json
+
+# 编译出的后端二进制（由 backend 源码构建）
+rootfs_amd64/bin/demoapp_serv
+rootfs_arm64/bin/demoapp_serv
+rootfs_*/bin/start.sh
+
+# 本地验证目录
+.simrun/
+
+# 系统文件
+.DS_Store

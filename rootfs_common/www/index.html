@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo App</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+    .card {
+      width: min(560px, 90vw);
+      padding: 32px;
+      border-radius: 16px;
+      background: #1e293b;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
+    }
+    h1 { margin: 0 0 8px; font-size: 22px; }
+    p.sub { margin: 0 0 24px; color: #94a3b8; font-size: 13px; }
+    button {
+      padding: 10px 18px;
+      border: 0;
+      border-radius: 8px;
+      background: #38bdf8;
+      color: #0b1220;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    pre {
+      margin: 20px 0 0;
+      padding: 14px;
+      border-radius: 10px;
+      background: #0b1220;
+      font-size: 12px;
+      white-space: pre-wrap;
+      min-height: 44px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Demo App 已启动</h1>
+    <p class="sub">前端静态文件由系统 Web 服务器托管，/api 请求由系统网关代理到 Go 后端。</p>
+    <button id="btn">调用后端 /api/hello</button>
+    <pre id="out">等待请求…</pre>
+  </div>
+  <script>
+    const out = document.getElementById('out');
+    document.getElementById('btn').addEventListener('click', async () => {
+      out.textContent = '请求中…';
+      try {
+        const res = await fetch('/api/hello');
+        out.textContent = JSON.stringify(await res.json(), null, 2);
+      } catch (e) {
+        out.textContent = '请求失败: ' + e;
+      }
+    });
+  </script>
+</body>
+</html>
